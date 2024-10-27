@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./mediaqueries.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <title>Movies Data 🍿</title>
+  </head>
+  <body>
+    <div id="first-page">
+      <nav>
+        <h1>Movies Data 🍿</h1>
+        <div class="menu">
+          <i class="ri-menu-3-line"></i>
+        </div>
+      </nav>
+      <div class="center">
+        <div class="left">
+          <h4>Fill The Boxes To Get Your 🎥 Info</h4>
+          <form action="/submit" method="post">
+            <label for="mname" class="txt">Moves Name :</label>
+            <input
+              class="txt"
+              type="text"
+              name="mname"
+              placeholder="Enter Your Movie Name"
+              required
+            /><br />
+            <label for="plot" class="txt">Plot :</label>
+            <select name="plot" id="plot" class="txt">
+              <option value="short" selected>Short</option>
+              <option value="full">Full</option>
+            </select>
+            <label for="type" class="txt">Type :</label>
+            <select name="type" id="type" class="txt">
+              <option value="movie" selected>Movie</option>
+              <option value="series">Series</option>
+              <option value="episode">Episode</option></select
+            ><br />
+            <button class="txt">Submit</button>
+          </form>
+        </div>
+        <div class="right">
+          <% if (locals.data == null) { %>
+          <h5>
+            WANT<br />
+            DEMAND<br />
+            KNOW 🎦<br />
+          </h5>
+          <% } else {%>
+          <div class="center-div">
+            <div class="img-div">
+              <img src="<%= data.Poster %>" alt="Movie Poster" />
+            </div>
+            <h1><%= data.Title %> <span>(<%= data.Released %>)</span></h1>
+            <p>🗿 Genre : <%= data.Genre %></p>
+            <p>🎬 IMBD Rating :<%= data.imdbRating %></p>
+            <p>
+              🍅 Rotten Tomatoes : <%= (data.Ratings && data.Ratings[1] &&
+              data.Ratings[1].Value) || 'N/A' %>
+            </p>
+            <p>🎞️ Runtime :<%= data.Runtime %></p>
+          </div>
+          <div class="plot">
+            <h6>Plot of the Movie</h6>
+            <p><%= data.Plot %></p>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <footer>
+        <p>Made With Love ❤️ By <span>Bedi Gupta</span></p>
+      </footer>
+    </div>
+  </body>
+</html>
